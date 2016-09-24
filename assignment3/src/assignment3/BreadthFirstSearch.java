@@ -57,7 +57,7 @@ public class BreadthFirstSearch {
 				currentIndex = queue.remove();
 			}
 			else{
-				System.out.println("You goofed, no connection");
+				System.out.println("no word ladder can be found between <start> and <finish>.");
 				return;
 			}		
 		}

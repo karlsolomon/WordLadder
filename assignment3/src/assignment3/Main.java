@@ -84,7 +84,8 @@ public class Main {
 	}
 	
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
-		// Return empty list if no ladder.
-		return null; // replace this line later with real return
+		BreadthFirstSearch bfs = new BreadthFirstSearch();
+		bfs.startBFS(start, end);
+		return bfs.getLadder();
 	}
 }

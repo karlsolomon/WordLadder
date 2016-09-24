@@ -49,9 +49,11 @@ public class BreadthFirstSearch {
 		while(currentIndex != goalIndex){
 			listForQueue = Words.linkedList.get(currentIndex);
 			for(Integer i : listForQueue){
-				queue.add(i);
-				searched.setIndex(i, true);
-				previousIndex[i] = currentIndex;
+				if(searched.indexIsTrue(i) == false){
+					queue.add(i);
+					searched.setIndex(i, true);
+					previousIndex[i] = currentIndex;
+				}
 			}
 			if(queue.isEmpty() == false){
 				currentIndex = queue.remove();

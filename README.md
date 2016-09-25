@@ -1,7 +1,7 @@
 # WordLadder
 
 TODO:
-0. Create some Try/Catch for DFS to avoid StackOverflow\n
+0. Create some Try/Catch for DFS to avoid StackOverflow
 1. Create JUnit Test cases for BFS & DFS
 2. Fully Test the "short_dict.txt" dictionary. Make sure that every combination works as expected
 3. Test Fringe Cases

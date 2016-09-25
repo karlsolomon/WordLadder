@@ -18,3 +18,4 @@ TODO:
   b. One Word is not in the dictionary
   c. Input word is not 5 letters long
 4. Clean up main to accept Keyboard Inputs rather than randomly generated inputs
+5. Change comparisons to InvariantCultureIgnoreCase or convert all inputs to the same case

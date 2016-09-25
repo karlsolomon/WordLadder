@@ -17,6 +17,9 @@ public class DepthFirstSearch {
 	}
 	
 	private Integer search(int currentWordIndex, int goalIndex) {
+		if(searched.contains(currentWordIndex)) {
+			return -1;
+		}
 		ladder.add(currentWordIndex);
 		searched.add(currentWordIndex);
 		//base case
@@ -33,8 +36,6 @@ public class DepthFirstSearch {
 		ArrayList<Integer> list = Words.linkedList.get(currentWordIndex);
 		int match = 0;
 		for(Integer i : list){
-			if(searched.contains(i))
-				continue; // skip this word
 			match = Words.getNumberOfCommonLetters(i, goalIndex);
 			if(match > currentMatching) {
 				greaterThan.add(i);
@@ -54,19 +55,22 @@ public class DepthFirstSearch {
 	}
 	
 	private Integer searchList(ArrayList<Integer> gList, ArrayList<Integer> eList, ArrayList<Integer> lList, Integer goalIndex) {
-		for(Integer i : gList) {
-			int a = search(i, goalIndex);
-			if(a != -1) return a;
+		try {
+			for(Integer i : gList) {
+				int a = search(i, goalIndex);
+				if(a != -1) return a;
+			}
+			for(Integer i : eList) {
+				int a = search(i, goalIndex);
+				if(a != -1) return a;
+			}
+			for(Integer i : lList) {
+				int a = search(i, goalIndex);
+				if(a != -1) return a;
+			}
+		} catch (StackOverflowError e) {
+			return -1; // ladder is too long for Stack. Can't solve with recursion
 		}
-		for(Integer i : eList) {
-			int a = search(i, goalIndex);
-			if(a != -1) return a;
-		}
-		for(Integer i : lList) {
-			int a = search(i, goalIndex);
-			if(a != -1) return a;
-		}
-		
 		return -1;
 	}
 }

@@ -24,7 +24,7 @@ public class Ladder {
 		int size = ladder.size();
 		String start = ladder.get(0);
 		if(!ladder.get(ladder.size()-1).equals(end)) {
-			System.out.println("no word ladder can be found between " + start + " and " + end + ".");
+			noLadder(start, end);
 		}
 		else {
 			String allRungs = "a " + size + "-rung word ladder exists between " + start + " and " + end + ".\n" ;
@@ -33,6 +33,9 @@ public class Ladder {
 			}
 			System.out.println(allRungs);
 		}
+	}
+	public void noLadder(String start, String end) {
+		System.out.println("no word ladder can be found between " + start + " and " + end + ".");
 	}
 
 }

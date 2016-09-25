@@ -10,7 +10,7 @@ public class Words {
 	public static ArrayList<String> dictionary = new ArrayList<String>();
 	public static ArrayList<ArrayList<Integer>> linkedList = new ArrayList<ArrayList<Integer>>();
 	public static int[][] matrix;
-	private static File shortDict = new File("five_letter_words.txt");
+	private static File shortDict;
 	private static Scanner in;
 	public static void init(){
 		try{
@@ -42,9 +42,15 @@ public class Words {
 		System.out.println("End: " + (a-base));
 	}
 	
+	public static void setFile(String fileName) {
+		shortDict = new File(fileName);
+	}
+	
 	private static void makeDictionary() {
+		String word;
 		while(in.hasNext()) {
-			dictionary.add(in.next());
+			word = in.next();
+			dictionary.add(word);
 		}
 	}
 	

@@ -2,8 +2,6 @@
 
 BUGS: (sorted by class)
   DFS:
-    - Stack Overflow Unhandled Exception
-    - Doesn't prevent cycles in ladder
   BFS:
     - Infinite loop when Result is found
     - Ladder Index Out of bounds Exception

@@ -32,15 +32,15 @@ public class BreadthFirstSearch {
 			ladder.add(startIndex);
 			return;
 		}
-		searched.setIndex(startIndex, true);//startIndex has been visited
+		searched.setSearched(startIndex);//startIndex has been visited
 		ArrayList<Integer> listForQueue = Words.linkedList.get(startIndex);
 		for(Integer i : listForQueue){
 			queue.add(i);
-			searched.setIndex(i, true);
+			searched.setSearched(i);
 			previousIndex[i] = startIndex;
 		}
 		int currentIndex = startIndex;
-		if(queue.isEmpty() == false){
+		if(!queue.isEmpty()){
 			currentIndex = queue.remove();
 		}
 		else{
@@ -49,17 +49,17 @@ public class BreadthFirstSearch {
 		while(currentIndex != goalIndex){
 			listForQueue = Words.linkedList.get(currentIndex);
 			for(Integer i : listForQueue){
-				if(searched.indexIsTrue(i) == false){
+				if(!searched.wasSearched(i)){
 					queue.add(i);
-					searched.setIndex(i, true);
+					searched.setSearched(i);
 					previousIndex[i] = currentIndex;
 				}
 			}
-			if(queue.isEmpty() == false){
+			if(!queue.isEmpty()){
 				currentIndex = queue.remove();
 			}
 			else{
-				System.out.println("no word ladder can be found between <start> and <finish>.");
+				ladder.noLadder(Words.dictionary.get(startIndex), Words.dictionary.get(goalIndex));
 				return;
 			}		
 		}

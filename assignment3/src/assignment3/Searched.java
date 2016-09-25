@@ -5,13 +5,13 @@ public class Searched {
 	public Searched(){
 		isSearched = new boolean[Words.dictionary.size()];
 	}
-	public boolean indexIsTrue(int i){
+	public boolean wasSearched(int i){
 		if(isSearched[i] == true){
 			return true;
 		}
 		else return false;
 	}
-	public void setIndex(int i, boolean b){
-		isSearched[i] = b;
+	public void setSearched(int i){
+		isSearched[i] = true;
 	}
 }

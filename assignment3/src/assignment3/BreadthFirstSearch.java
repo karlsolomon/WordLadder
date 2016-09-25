@@ -63,10 +63,10 @@ public class BreadthFirstSearch {
 				return;
 			}		
 		}
-		int x = previousIndex[currentIndex];
-		while(x != startIndex){
-			results.add(x);
-			x = previousIndex[currentIndex];
+		
+		while(currentIndex != startIndex){
+			results.add(previousIndex[currentIndex]);
+			currentIndex = previousIndex[currentIndex];
 		}
 		for(int i = results.size(); i > 0; i--){
 			ladder.add(results.get(i));

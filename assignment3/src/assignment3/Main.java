@@ -31,17 +31,18 @@ public class Main {
 		
 		initialize();	
 		
-		//RANDOM TESTING
-		Random r = new Random();
-		String word1;
-		String word2;
-		for(int i = 0 ; i < 10; i ++) {
-			word1 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
-			word2 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
-			if(containsDuplicates(getWordLadderDFS(word1, word2))) {
-				throw new Exception();
-			}
-		}
+//		//RANDOM TESTING
+//		Random r = new Random();
+//		String word1;
+//		String word2;
+//		for(int i = 0 ; i < 10; i ++) {
+//			word1 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
+//			word2 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
+//			if(containsDuplicates(getWordLadderDFS(word1, word2))) {
+//				throw new Exception();
+//			}
+//		}
+		getWordLadderDFS("fluff", "boast"); //DON'T DELETE THIS EXAMPLE: PROVES DFS TO BE ASYNCHRONOUS
 		
 		
 //		//ACTUAL INPUT TESTING
@@ -107,7 +108,6 @@ public class Main {
 	public static ArrayList<String> getWordLadderDFS(String start, String end) {
 		DepthFirstSearch dfs = new DepthFirstSearch();
 		dfs.startDFS(start, end);
-		if(dfs.getLadder().get(dfs.getLadder().size()-1) != end) return new ArrayList<String>();
 		return dfs.getLadder();
 	}
 	

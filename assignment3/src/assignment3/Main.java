@@ -32,17 +32,16 @@ public class Main {
 		initialize();	
 		
 		//RANDOM TESTING
-//		Random r = new Random();
-//		String word1;
-//		String word2;
-//		for(int i = 0 ; i < 10; i ++) {
-//			word1 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
-//			word2 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
-//			if(containsDuplicates(getWordLadderDFS(word1, word2))) {
-//				throw new Exception();
-//			}
-//		}
-		getWordLadderDFS("tones", "ensue");
+		Random r = new Random();
+		String word1;
+		String word2;
+		for(int i = 0 ; i < 10; i ++) {
+			word1 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
+			word2 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
+			if(containsDuplicates(getWordLadderDFS(word1, word2))) {
+				throw new Exception();
+			}
+		}
 		
 		
 //		//ACTUAL INPUT TESTING

@@ -14,7 +14,12 @@
 
 
 package assignment3;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -23,46 +28,59 @@ public class Main {
 	// static variables and constants only here.
 	
 	public static void main(String[] args) throws Exception {
-
-		Random r = new Random();
-		String word1;
-		String word2;
 		
-		initialize();
-		for(int i = 0 ; i < 10; i ++) {
-			word1 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
-			word2 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
-			if(containsDuplicates(getWordLadderDFS(word1, word2))) {
-				throw new Exception();
-			}
-		}
+		initialize();	
 		
-		//Scanner in = new Scanner(System.in);
-		//String word1 = in.nextLine();
-		//String word2 = in.nextLine();
+		//RANDOM TESTING
+//		Random r = new Random();
+//		String word1;
+//		String word2;
+//		for(int i = 0 ; i < 10; i ++) {
+//			word1 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
+//			word2 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
+//			if(containsDuplicates(getWordLadderDFS(word1, word2))) {
+//				throw new Exception();
+//			}
+//		}
+		getWordLadderDFS("tones", "ensue");
 		
-//		Scanner kb;	// input Scanner for commands
-//		PrintStream ps;	// output file
+		
+//		//ACTUAL INPUT TESTING
+//		//SPECIFY I/O FILES IN RUN CONFIGURATIONS -> ARGUMENTS
+//		//^BLANK MEANS I/O IS CONSOLE
+//		Scanner kb = null;	// input Scanner for commands
+//		PrintStream ps = null;	// output file
 //		// If arguments are specified, read/write from/to files instead of Std IO.
 //		if (args.length != 0) {
 //			kb = new Scanner(new File(args[0]));
-//			ps = new PrintStream(new File(args[1]));
-//			System.setOut(ps);			// redirect output to ps
+//			try {
+//				ps = new PrintStream(new File(args[1]));
+//			} catch (FileNotFoundException e) {
+//				PrintWriter writer = new PrintWriter(args[1], "UTF-8");
+//				writer.close();
+//				ps = new PrintStream(new File(args[1]));
+//			} finally {
+//				System.setOut(ps);
+//			}
 //		} else {
 //			kb = new Scanner(System.in);// default from Stdin
 //			ps = System.out;			// default to Stdout
+//		}  
+//		ArrayList<String> inputs;
+//		while(true) {
+//			try {
+//				inputs = parse(kb);
+//				getWordLadderDFS(inputs.get(0), inputs.get(1));	
+//			} catch (NoSuchElementException e) {
+//				ps.close();
+//				return;
+//			}
 //		}
-		//initialize();
-		
-		// TODO methods to read in words, output ladder
 	}
 	
 	public static void initialize() {
 		Words.setFile("five_letter_words.txt");
 		Words.init();
-		// initialize your static variables or constants here.
-		// We will call this method before running our JUNIT tests.  So call it 
-		// only once at the start of main.
 	}
 	
 	/**
@@ -71,8 +89,20 @@ public class Main {
 	 * If command is /quit, return empty ArrayList. 
 	 */
 	public static ArrayList<String> parse(Scanner keyboard) {
-		//TODO
-		return null;
+		ArrayList<String> inputWords = new ArrayList<String>();
+		String input;
+		input = keyboard.next().toLowerCase();
+		if(input.equals("//quit"))
+			return null;
+		else
+			inputWords.add(input);	
+		
+		input = keyboard.next().toLowerCase();
+		if(input.equals("//quit"))
+			return null;
+		else
+			inputWords.add(input);		
+		return inputWords;
 	}
 	
 	public static ArrayList<String> getWordLadderDFS(String start, String end) {
@@ -80,15 +110,13 @@ public class Main {
 		dfs.startDFS(start, end);
 		if(dfs.getLadder().get(dfs.getLadder().size()-1) != end) return new ArrayList<String>();
 		return dfs.getLadder();
-
 	}
 	
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
 		BreadthFirstSearch bfs = new BreadthFirstSearch();
 		bfs.startBFS(start, end);
 		return bfs.getLadder();
-	}
-    
+	}    
     
     public static boolean containsDuplicates(ArrayList<String> ladder) {
     	for(int i = 0; i < ladder.size(); i ++) {
@@ -100,6 +128,6 @@ public class Main {
     		}
     	} 
     	return false;
-    }
+    }    
 }
  

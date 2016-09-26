@@ -12,8 +12,31 @@ public class DepthFirstSearch {
 	}
 	
 	public void startDFS(String start, String end) {
-		search(Words.dictionary.indexOf(start), Words.dictionary.indexOf(end));
-		ladder.printLadder(end);
+		try{
+			search(Words.dictionary.indexOf(start), Words.dictionary.indexOf(end));
+			ladder.printLadder(end);
+		} catch (StackOverflowError e1) { // if too large, try the reverse
+			try {
+				ladder = new Ladder();
+				searched = new ArrayList<Integer>();
+				search(Words.dictionary.indexOf(end), Words.dictionary.indexOf(start));
+				ArrayList<String> reverseladder = ladder.getLadder();
+				String first;
+				String second;
+				int secondIndex;
+				for(int i = 0; i < reverseladder.size()/2; i++) {
+					secondIndex = reverseladder.size() - (i+1);
+					first = reverseladder.get(i);
+					second = reverseladder.get(secondIndex);
+					reverseladder.set(i, second);
+					reverseladder.set(secondIndex, first);
+				}
+				ladder.setLadder(reverseladder);
+				ladder.printLadder(end);
+			} catch (StackOverflowError e2) { //if both too large, fail
+				ladder.noLadder(start, end);
+			}
+		}
 	}
 	
 	private Integer search(int currentWordIndex, int goalIndex) {
@@ -55,21 +78,17 @@ public class DepthFirstSearch {
 	}
 	
 	private Integer searchList(ArrayList<Integer> gList, ArrayList<Integer> eList, ArrayList<Integer> lList, Integer goalIndex) {
-		try {
-			for(Integer i : gList) {
-				int a = search(i, goalIndex);
-				if(a != -1) return a;
-			}
-			for(Integer i : eList) {
-				int a = search(i, goalIndex);
-				if(a != -1) return a;
-			}
-			for(Integer i : lList) {
-				int a = search(i, goalIndex);
-				if(a != -1) return a;
-			}
-		} catch (StackOverflowError e) {
-			return -1; // ladder is too long for Stack. Can't solve with recursion
+		for(Integer i : gList) {
+			int a = search(i, goalIndex);
+			if(a != -1) return a;
+		}
+		for(Integer i : eList) {
+			int a = search(i, goalIndex);
+			if(a != -1) return a;
+		}
+		for(Integer i : lList) {
+			int a = search(i, goalIndex);
+			if(a != -1) return a;
 		}
 		return -1;
 	}

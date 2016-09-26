@@ -1,0 +1,56 @@
+Enter First Word: 
+Enter Second Word: 
+a 2-rung word ladder exists between hears and heart.
+hears
+heart
+
+Enter First Word: 
+Enter Second Word: 
+a 2-rung word ladder exists between hears and heard.
+hears
+heard
+
+Enter First Word: 
+Enter Second Word: 
+a 2-rung word ladder exists between heart and heard.
+heart
+heard
+
+Enter First Word: 
+Enter Second Word: 
+a 2-rung word ladder exists between hears and wears.
+hears
+wears
+
+Enter First Word: 
+Enter Second Word: 
+a 2-rung word ladder exists between wanes and wares.
+wanes
+wares
+
+Enter First Word: 
+Enter Second Word: 
+a 2-rung word ladder exists between wanes and wants.
+wanes
+wants
+
+Enter First Word: 
+Enter Second Word: 
+a 3-rung word ladder exists between wanes and hants.
+wanes
+wants
+hants
+
+Enter First Word: 
+Enter Second Word: 
+a 4-rung word ladder exists between hants and wares.
+hants
+wants
+wanes
+wares
+
+Enter First Word: 
+Enter Second Word: 
+no word ladder can be found between three and wears.
+Enter First Word: 
+Enter Second Word: 

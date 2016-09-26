@@ -3,7 +3,7 @@ package assignment3;
 import java.util.ArrayList;
 
 public class Ladder {
-	private ArrayList<String> ladder;
+	public ArrayList<String> ladder;
 	public Ladder() {
 		ladder = new ArrayList<String>();
 	}
@@ -18,6 +18,9 @@ public class Ladder {
 	
 	public ArrayList<String> getLadder() {
 		return this.ladder;
+	}
+	public void setLadder(ArrayList<String> ladder) {
+		this.ladder = ladder;
 	}
 	
 	public void printLadder(String end) {

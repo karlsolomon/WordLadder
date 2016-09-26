@@ -19,27 +19,10 @@ public class Words {
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		long base = System.currentTimeMillis();
-		long a = base;
-		System.out.println("Dictionary Start: " + 0);
 		makeDictionary();
-		
-		
-		base = a;
-		a = System.currentTimeMillis();
-		System.out.println("Matrix Start: " + (a-base));
 		makeMatrix();
-		
-		
-		base = a;
-		a = System.currentTimeMillis();
-		System.out.println("LinkedList Start: " + (a-base));
 		makeLinkedList();
-		
-		
-		base = a;
-		a = System.currentTimeMillis();
-		System.out.println("End: " + (a-base));
+		in.close();
 	}
 	
 	public static void setFile(String fileName) {
@@ -49,7 +32,7 @@ public class Words {
 	private static void makeDictionary() {
 		String word;
 		while(in.hasNext()) {
-			word = in.next();
+			word = in.next().toLowerCase();
 			dictionary.add(word);
 		}
 	}

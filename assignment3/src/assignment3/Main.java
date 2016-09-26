@@ -38,7 +38,7 @@ public class Main {
 //		for(int i = 0 ; i < 10; i ++) {
 //			word1 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
 //			word2 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
-//			if(containsDuplicates(getWordLadderDFS(word1, word2))) {
+//			if(containsDuplicates(getWordLadderBFS(word1, word2))) {
 //				throw new Exception();
 //			}
 //		}
@@ -79,7 +79,8 @@ public class Main {
 	}
 	
 	public static void initialize() {
-		Words.setFile("five_letter_words.txt");
+		Words.setFile("short_dict.txt");
+		//Words.setFile("five_letter_words.txt");
 		Words.init();
 	}
 	

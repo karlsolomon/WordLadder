@@ -1,8 +1,6 @@
 package assignment3;
 
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
-import java.util.concurrent.FutureTask;
 
 public class DepthFirstSearch {
 	private Ladder ladder = new Ladder();
@@ -10,6 +8,11 @@ public class DepthFirstSearch {
 	public DepthFirstSearch() {		
 	}
 	
+	/**
+	 * Asynchronously checks both forward and backward DFS directions. Kills the slower operation when the faster one is found
+	 * @param start first user input word, the start of the ladder
+	 * @param end second user input word, the end of the ladder
+	 */
 	public void startDFS(String start, String end) {
 		new Thread(() -> {
 		    forwardDFS(start, end);

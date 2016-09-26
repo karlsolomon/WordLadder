@@ -31,7 +31,7 @@ public class Main {
 		
 		initialize();	
 		
-		//RANDOM TESTING
+//		//RANDOM TESTING
 //		Random r = new Random();
 //		String word1;
 //		String word2;
@@ -42,7 +42,7 @@ public class Main {
 //				throw new Exception();
 //			}
 //		}
-		getWordLadderDFS("tones", "ensue");
+		getWordLadderDFS("fluff", "boast"); //DON'T DELETE THIS EXAMPLE: PROVES DFS TO BE ASYNCHRONOUS
 		
 		
 //		//ACTUAL INPUT TESTING
@@ -108,7 +108,6 @@ public class Main {
 	public static ArrayList<String> getWordLadderDFS(String start, String end) {
 		DepthFirstSearch dfs = new DepthFirstSearch();
 		dfs.startDFS(start, end);
-		if(dfs.getLadder().get(dfs.getLadder().size()-1) != end) return new ArrayList<String>();
 		return dfs.getLadder();
 	}
 	

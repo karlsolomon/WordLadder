@@ -6,7 +6,7 @@ public class Searched {
 		isSearched = new boolean[Words.dictionary.size()];
 	}
 	public boolean wasSearched(int i){
-		if(isSearched[i] == true){
+		if(isSearched[i]){
 			return true;
 		}
 		else return false;

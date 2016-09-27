@@ -23,17 +23,30 @@ public class BreadthFirstSearch {
 	}
 	
 	public void startBFS(String start, String end){
-		search(Words.dictionary.indexOf(start), Words.dictionary.indexOf(end));
-		ladder.printLadder(end);
+		if(Words.inDictionary(start) == true && Words.inDictionary(end)){
+			boolean check = search(Words.dictionary.indexOf(start), Words.dictionary.indexOf(end));
+			if(check == true){
+				ladder.printLadder(end);
+			}
+		}
+		else{
+			System.out.println("One of your input words is not contained in the dictionary.");
+			return;
+		}
+		
 	}
 	
-	private void search(int startIndex, int goalIndex){
+	private boolean search(int startIndex, int goalIndex){
 		if(startIndex == goalIndex){
 			ladder.add(startIndex);
-			return;
+			return true;
 		}
 		searched.setSearched(startIndex);//startIndex has been visited
 		ArrayList<Integer> listForQueue = Words.linkedList.get(startIndex);
+		if(listForQueue.size() == 0){
+			ladder.noLadder(Words.dictionary.get(startIndex), Words.dictionary.get(goalIndex));
+			return false;
+		}
 		for(Integer i : listForQueue){
 			queue.add(i);
 			searched.setSearched(i);
@@ -44,7 +57,7 @@ public class BreadthFirstSearch {
 			currentIndex = queue.remove();
 		}
 		else{
-			return;
+			return false;
 		}
 		while(currentIndex != goalIndex){
 			listForQueue = Words.linkedList.get(currentIndex);
@@ -60,7 +73,7 @@ public class BreadthFirstSearch {
 			}
 			else{
 				ladder.noLadder(Words.dictionary.get(startIndex), Words.dictionary.get(goalIndex));
-				return;
+				return false;
 			}		
 		}
 		
@@ -68,10 +81,11 @@ public class BreadthFirstSearch {
 			results.add(previousIndex[currentIndex]);
 			currentIndex = previousIndex[currentIndex];
 		}
-		for(int i = results.size(); i > 0; i--){
+		for(int i = results.size()-1; i >= 0; i--){
 			ladder.add(results.get(i));
 		}
-		return;
+		ladder.add(goalIndex);
+		return true;
 	}
 	public ArrayList<String> getLadder() {
 		return ladder.getLadder();

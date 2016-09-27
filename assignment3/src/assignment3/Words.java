@@ -85,10 +85,5 @@ public class Words {
 		return matrix[a][b];
 	}
 	
-	public static boolean inDictionary(String s){
-		if(dictionary.contains(s) == true){
-			return true;
-		}
-		return false;
-	}
+	
 }

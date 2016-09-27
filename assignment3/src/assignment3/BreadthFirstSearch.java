@@ -23,9 +23,15 @@ public class BreadthFirstSearch {
 	}
 	
 	public void startBFS(String start, String end){
-		boolean check = search(Words.dictionary.indexOf(start), Words.dictionary.indexOf(end));
-		if(check == true){
-			ladder.printLadder(end);
+		if(Words.inDictionary(start) == true && Words.inDictionary(end)){
+			boolean check = search(Words.dictionary.indexOf(start), Words.dictionary.indexOf(end));
+			if(check == true){
+				ladder.printLadder(end);
+			}
+		}
+		else{
+			System.out.println("One of your input words is not contained in the dictionary.");
+			return;
 		}
 		
 	}

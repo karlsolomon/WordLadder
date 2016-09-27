@@ -43,7 +43,14 @@ public class Main {
 //			}
 //		}
 		getWordLadderDFS("fluff", "boast"); //DON'T DELETE THIS EXAMPLE: PROVES DFS TO BE ASYNCHRONOUS
+		getWordLadderBFS("fluff", "boast");	//BFS Version
 		
+		//Testing BFS Fringe Cases
+		getWordLadderBFS("fluff", "fluff");	//Testing same word case
+		getWordLadderBFS("aaaaa", "boast"); //Testing for one word not in dictionary
+		getWordLadderBFS("aaaaa", "aaaaa"); //Testing two words not in dictionary that are same
+		getWordLadderBFS("aaaaa", "baaaa"); //Testing two words not in dictionary that are different
+		getWordLadderBFS("aaaa", "boast"); //Testing input not 5 letters
 		
 //		//ACTUAL INPUT TESTING
 //		//SPECIFY I/O FILES IN RUN CONFIGURATIONS -> ARGUMENTS
@@ -79,8 +86,8 @@ public class Main {
 	}
 	
 	public static void initialize() {
-		Words.setFile("short_dict.txt");
-		//Words.setFile("five_letter_words.txt");
+		//Words.setFile("short_dict.txt");
+		Words.setFile("five_letter_words.txt");
 		Words.init();
 	}
 	

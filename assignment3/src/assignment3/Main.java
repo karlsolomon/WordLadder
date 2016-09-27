@@ -31,16 +31,15 @@ public class Main {
 		
 		initialize();	
 		
-//		//RANDOM TESTING
+		//RANDOM TESTING
 //		Random r = new Random();
 //		String word1;
 //		String word2;
 //		for(int i = 0 ; i < 10; i ++) {
 //			word1 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
 //			word2 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
-//			if(containsDuplicates(getWordLadderBFS(word1, word2))) {
-//				throw new Exception();
-//			}
+//			getWordLadderBFS(word1, word2);
+//			getWordLadderBFS(word2, word1);
 //		}
 		getWordLadderDFS("fluff", "boast"); //DON'T DELETE THIS EXAMPLE: PROVES DFS TO BE ASYNCHRONOUS
 		
@@ -79,7 +78,7 @@ public class Main {
 	}
 	
 	public static void initialize() {
-		Words.setFile("short_dict.txt");
+		Words.setFile("five_letter_words.txt");
 		//Words.setFile("five_letter_words.txt");
 		Words.init();
 	}

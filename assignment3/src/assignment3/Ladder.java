@@ -23,6 +23,19 @@ public class Ladder {
 		this.ladder = ladder;
 	}
 	
+	public void reverseLadder() {
+		String first;
+		String second;
+		int secondIndex;		
+		for(int i = 0; i < ladder.size()/2; i++) {
+			secondIndex = ladder.size() - (i+1);
+			first = ladder.get(i);
+			second = ladder.get(secondIndex);
+			ladder.set(i, second);
+			ladder.set(secondIndex, first);
+		}		
+	}
+	
 	public void printLadder(String end) {
 		int size = ladder.size();
 		String start = ladder.get(0);

@@ -4,8 +4,14 @@ import java.util.ArrayList;
 
 public class DepthFirstSearch {
 	private Ladder ladder = new Ladder();
-	private boolean ladderFound = false;
-	public DepthFirstSearch() {		
+	private boolean ladderFound;
+	public String start;
+	public String end;
+	
+	public DepthFirstSearch(String start, String end) {
+		ladderFound = false;
+		this.start = start;
+		this.end = end;
 	}
 	
 	/**
@@ -13,33 +19,46 @@ public class DepthFirstSearch {
 	 * @param start first user input word, the start of the ladder
 	 * @param end second user input word, the end of the ladder
 	 */
-	public void startDFS(String start, String end) {
-		new Thread(() -> {
-		    forwardDFS(start, end);
-		}).start();
-		
-		new Thread(() -> {
-		    reverseDFS(start, end);
-		}).start();
+	public void startDFS() {
+		Thread forward = new Thread(new RunDFS(true, this));
+		forward.start();
+		Thread reverse = new Thread(new RunDFS(false, this));
+		reverse.start();
+		while (true) {
+		   try {
+		      forward.join();
+		      reverse.join();
+		      break;
+		   } catch (InterruptedException e) {
+		      e.printStackTrace();
+		      break;
+		   }
+		}
 	}
 	
-	private void forwardDFS(String start, String end) {
+	public void forwardDFS() {
 		Ladder ladder = new Ladder();
 		ArrayList<Integer> searched = new ArrayList<Integer>();	
 		try{
 			search(Words.dictionary.indexOf(start), Words.dictionary.indexOf(end), searched, ladder);
 			if(!ladderFound) {
-				ladder.printLadder(end);
 				ladderFound = true;
-				this.ladder = ladder;
+				if(ladder.getLadder().contains(start) && ladder.getLadder().contains(end)) {
+					ladder.printLadder(end);
+					this.ladder = ladder;
+				}
+				else {
+					ladder.noLadder(start, end);
+					this.ladder = new Ladder();
+				}
 			}
 		} catch (StackOverflowError e) { //if both too large, fail
 			ladder.noLadder(start, end);
+			this.ladder = new Ladder();
 		}
 	}
 	
-	
-	private void reverseDFS(String start, String end) {
+	public void reverseDFS() {
 		Ladder ladderReverse = new Ladder();
 		ArrayList<Integer> searchedReverse = new ArrayList<Integer>();	
 		try {
@@ -54,10 +73,12 @@ public class DepthFirstSearch {
 				}
 				else {
 					ladderReverse.noLadder(start, end);
+					this.ladder = new Ladder();
 				}				
 			}
 		} catch (StackOverflowError e) { //if both too large, fail
 			ladderReverse.noLadder(start, end);
+			this.ladder = new Ladder();
 		}
 		
 	}

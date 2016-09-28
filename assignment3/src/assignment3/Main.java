@@ -19,9 +19,12 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 	
@@ -30,56 +33,89 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		
 		initialize();	
-		
-		//RANDOM TESTING
+//		Long start;
+//		Long end;
+//		String time;
+//		ArrayList<String> tmp;
+//		
+//		
+//		//RANDOM TESTING
+//		int numItems = 100;
+//		String[][] sizes = new String[numItems][6];
 //		Random r = new Random();
 //		String word1;
 //		String word2;
-//		for(int i = 0 ; i < 10; i ++) {
+//		Long dfsTime = (long) 0;
+//		Long bfsTime = (long) 0;
+//		for(int i = 0 ; i < numItems; i ++) {
 //			word1 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
 //			word2 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
-//			getWordLadderBFS(word1, word2);
-//			getWordLadderBFS(word2, word1);
+//			sizes[i][0] = word1;
+//			sizes[i][1] = word2;
+//			
+//			start = System.nanoTime();
+//			tmp = getWordLadderDFS(word1, word2);
+//			end = System.nanoTime();
+//			time = Long.toString(end-start);			
+//			sizes[i][2] = String.valueOf(tmp.size());
+//			sizes[i][4] = time;
+//			dfsTime += (end-start);
+//			
+//			start = System.nanoTime();
+//			tmp = getWordLadderBFS(word1, word2);
+//			end = System.nanoTime();
+//			time = Long.toString(end-start);			
+//			sizes[i][3] = String.valueOf(tmp.size());
+//			sizes[i][5] = time;
+//			bfsTime += (end-start);
 //		}
-		getWordLadderDFS("fluff", "boast"); //DON'T DELETE THIS EXAMPLE: PROVES DFS TO BE ASYNCHRONOUS
+//		System.out.println("Word1\tWord2\tDsize\tBsize\tDtime\tBtime");
+//		for(int i = 0 ; i < numItems ; i ++) {
+//			for(int j = 0 ; j < 6; j++) {
+//				System.out.print(sizes[i][j] + '\t');
+//			}
+//			System.out.print("\n");
+//		}
+//		
+//		System.out.println("\n\nAvg BFS Time: " + bfsTime/numItems + "\nAvg DFS Time: " + dfsTime/numItems);
+//		
 		
 		
-//		//ACTUAL INPUT TESTING
-//		//SPECIFY I/O FILES IN RUN CONFIGURATIONS -> ARGUMENTS
-//		//^BLANK MEANS I/O IS CONSOLE
-//		Scanner kb = null;	// input Scanner for commands
-//		PrintStream ps = null;	// output file
-//		// If arguments are specified, read/write from/to files instead of Std IO.
-//		if (args.length != 0) {
-//			kb = new Scanner(new File(args[0]));
-//			try {
-//				ps = new PrintStream(new File(args[1]));
-//			} catch (FileNotFoundException e) {
-//				PrintWriter writer = new PrintWriter(args[1], "UTF-8");
-//				writer.close();
-//				ps = new PrintStream(new File(args[1]));
-//			} finally {
-//				System.setOut(ps);
-//			}
-//		} else {
-//			kb = new Scanner(System.in);// default from Stdin
-//			ps = System.out;			// default to Stdout
-//		}  
-//		ArrayList<String> inputs;
-//		while(true) {
-//			try {
-//				inputs = parse(kb);
-//				getWordLadderDFS(inputs.get(0), inputs.get(1));	
-//			} catch (NoSuchElementException e) {
-//				ps.close();
-//				return;
-//			}
-//		}
+		//ACTUAL INPUT TESTING
+		//SPECIFY I/O FILES IN RUN CONFIGURATIONS -> ARGUMENTS
+		//^BLANK MEANS I/O IS CONSOLE
+		Scanner kb = null;	// input Scanner for commands
+		PrintStream ps = null;	// output file
+		// If arguments are specified, read/write from/to files instead of Std IO.
+		if (args.length != 0) {
+			kb = new Scanner(new File(args[0]));
+			try {
+				ps = new PrintStream(new File(args[1]));
+			} catch (FileNotFoundException e) {
+				PrintWriter writer = new PrintWriter(args[1], "UTF-8");
+				writer.close();
+				ps = new PrintStream(new File(args[1]));
+			} finally {
+				System.setOut(ps);
+			}
+		} else {
+			kb = new Scanner(System.in);// default from Stdin
+			ps = System.out;			// default to Stdout
+		}  
+		ArrayList<String> inputs;
+		while(true) {
+			try {
+				inputs = parse(kb);
+				getWordLadderDFS(inputs.get(0), inputs.get(1));	
+			} catch (NoSuchElementException e) {
+				ps.close();
+				return;
+			}
+		}
 	}
 	
 	public static void initialize() {
 		Words.setFile("five_letter_words.txt");
-		//Words.setFile("five_letter_words.txt");
 		Words.init();
 	}
 	
@@ -105,9 +141,9 @@ public class Main {
 		return inputWords;
 	}
 	
-	public static ArrayList<String> getWordLadderDFS(String start, String end) {
-		DepthFirstSearch dfs = new DepthFirstSearch();
-		dfs.startDFS(start, end);
+	public static ArrayList<String> getWordLadderDFS(String start, String end) throws InterruptedException, ExecutionException {
+		DepthFirstSearch dfs = new DepthFirstSearch(start, end);
+		dfs.startDFS();		
 		return dfs.getLadder();
 	}
 	

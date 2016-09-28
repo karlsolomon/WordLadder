@@ -121,8 +121,9 @@ public class SystemTest {
 		System.out.println("\n\nAvg BFS Time: " + bfsTime/numItems + "\nAvg DFS Time: " + dfsTime/numItems);
 		
 	}
+	//Test for if they are both zero or both not zero
 	@Test
 	public void testDFSvsBFS2() throws InterruptedException, ExecutionException{
-		
+	
 	}
 }

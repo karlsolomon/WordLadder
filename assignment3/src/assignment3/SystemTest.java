@@ -121,5 +121,8 @@ public class SystemTest {
 		System.out.println("\n\nAvg BFS Time: " + bfsTime/numItems + "\nAvg DFS Time: " + dfsTime/numItems);
 		
 	}
-
+	@Test
+	public void testDFSvsBFS2() throws InterruptedException, ExecutionException{
+		
+	}
 }

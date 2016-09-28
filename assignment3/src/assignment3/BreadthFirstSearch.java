@@ -12,6 +12,7 @@ public class BreadthFirstSearch {
 	private Searched searched;
 	private int[] previousIndex;
 	private ArrayList<Integer> results;
+
 	
 	public BreadthFirstSearch(){
 		ladder = new Ladder();	

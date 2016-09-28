@@ -24,7 +24,7 @@ public class SystemTest {
 		
 		
 		//RANDOM TESTING
-		int numItems = 100;
+		int numItems = 1000;
 		String[][] sizes = new String[numItems][6];
 		Random r = new Random();
 		int bfsSize = 0;
@@ -40,7 +40,7 @@ public class SystemTest {
 			sizes[i][1] = word2;
 			
 			start = System.nanoTime();
-			tmp = Main.getWordLadderDFS(word1, word2);
+			tmp = Main.getWordLadderBFS(word1, word2);
 			end = System.nanoTime();
 			time = Long.toString(end-start);
 			dfsSize = tmp.size();
@@ -49,14 +49,14 @@ public class SystemTest {
 			dfsTime += (end-start);
 			
 			start = System.nanoTime();
-			tmp = Main.getWordLadderBFS(word1, word2);
+			tmp = Main.getWordLadderBFS(word2, word1);
 			end = System.nanoTime();
 			time = Long.toString(end-start);		
 			bfsSize = tmp.size();	
 			sizes[i][3] = String.valueOf(bfsSize);
 			sizes[i][5] = time;
 			bfsTime += (end-start);			
-			assertTrue(bfsSize <= dfsSize);
+			assertTrue(bfsSize == dfsSize);
 		}
 		System.out.println("Word1\tWord2\tDsize\tBsize\tDtime\tBtime");
 		for(int i = 0 ; i < numItems ; i ++) {

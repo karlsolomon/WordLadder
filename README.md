@@ -21,6 +21,11 @@ REQUIREMENTS:
 	- getWordLadderBFS
 	- printLadder
 
-
+JUnit Tests
+-BFS vs. BFS is same length
+-BFS vs. DFS BFS<DFS length
+-BFS vs. DFS both find a ladder a.k.a. both should be zero or both should not be zero
+-File Input TestCase Tests
+-Keyboard Input Test
 
 

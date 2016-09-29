@@ -1,0 +1,22 @@
+a 10-rung word ladder exists between jammy and viers.
+jammy
+gammy
+gamay
+gamas
+lamas
+limas
+limns
+liens
+liers
+viers
+
+a 8-rung word ladder exists between keets and muddy.
+keets
+deets
+deeds
+reeds
+redds
+rudds
+ruddy
+muddy
+

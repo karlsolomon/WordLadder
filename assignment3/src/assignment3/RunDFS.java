@@ -3,6 +3,7 @@ package assignment3;
 public class RunDFS implements Runnable {
      boolean forward;
      DepthFirstSearch dfs;
+     
      /**
       * True = forward
       * False = backward

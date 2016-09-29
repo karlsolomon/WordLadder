@@ -30,56 +30,8 @@ public class Main {
 	
 	// static variables and constants only here.
 	
-	public static void main(String[] args) throws Exception {
-		
-		initialize();	
-//		Long start;
-//		Long end;
-//		String time;
-//		ArrayList<String> tmp;
-//		
-//		
-//		//RANDOM TESTING
-//		int numItems = 100;
-//		String[][] sizes = new String[numItems][6];
-//		Random r = new Random();
-//		String word1;
-//		String word2;
-//		Long dfsTime = (long) 0;
-//		Long bfsTime = (long) 0;
-//		for(int i = 0 ; i < numItems; i ++) {
-//			word1 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
-//			word2 = Words.dictionary.get(r.nextInt(Words.dictionary.size()));
-//			sizes[i][0] = word1;
-//			sizes[i][1] = word2;
-//			
-//			start = System.nanoTime();
-//			tmp = getWordLadderDFS(word1, word2);
-//			end = System.nanoTime();
-//			time = Long.toString(end-start);			
-//			sizes[i][2] = String.valueOf(tmp.size());
-//			sizes[i][4] = time;
-//			dfsTime += (end-start);
-//			
-//			start = System.nanoTime();
-//			tmp = getWordLadderBFS(word1, word2);
-//			end = System.nanoTime();
-//			time = Long.toString(end-start);			
-//			sizes[i][3] = String.valueOf(tmp.size());
-//			sizes[i][5] = time;
-//			bfsTime += (end-start);
-//		}
-//		System.out.println("Word1\tWord2\tDsize\tBsize\tDtime\tBtime");
-//		for(int i = 0 ; i < numItems ; i ++) {
-//			for(int j = 0 ; j < 6; j++) {
-//				System.out.print(sizes[i][j] + '\t');
-//			}
-//			System.out.print("\n");
-//		}
-//		
-//		System.out.println("\n\nAvg BFS Time: " + bfsTime/numItems + "\nAvg DFS Time: " + dfsTime/numItems);
-//		
-		
+	public static void main(String[] args) throws Exception {		
+		initialize();		
 		
 		//ACTUAL INPUT TESTING
 		//SPECIFY I/O FILES IN RUN CONFIGURATIONS -> ARGUMENTS
@@ -107,7 +59,7 @@ public class Main {
 			try {
 				inputs = parse(kb);
 				getWordLadderDFS(inputs.get(0), inputs.get(1));	
-			} catch (NoSuchElementException e) {
+			} catch (ArrayIndexOutOfBoundsException | NoSuchElementException | NullPointerException e) {
 				ps.close();
 				return;
 			}
@@ -128,13 +80,13 @@ public class Main {
 		ArrayList<String> inputWords = new ArrayList<String>();
 		String input;
 		input = keyboard.next().toLowerCase();
-		if(input.equals("//quit"))
+		if(input.equalsIgnoreCase("/quit"))
 			return null;
 		else
 			inputWords.add(input);	
 		
 		input = keyboard.next().toLowerCase();
-		if(input.equals("//quit"))
+		if(input.equalsIgnoreCase("//quit"))
 			return null;
 		else
 			inputWords.add(input);		

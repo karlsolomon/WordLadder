@@ -2,6 +2,11 @@ package assignment3;
 
 import java.util.ArrayList;
 
+/**
+ * Uses Multithreading to simultaneously check forward and reverse directions of DFS to find the quickest and (usually) shortest ladder
+ * of the two.
+ * @author KSolomon
+ */
 public class DepthFirstSearch {
 	private Ladder ladder = new Ladder();
 	private boolean ladderFound;
@@ -15,7 +20,8 @@ public class DepthFirstSearch {
 	}
 	
 	/**
-	 * Asynchronously checks both forward and backward DFS directions. Kills the slower operation when the faster one is found
+	 * Uses two threads to checks both forward and reverse DFS directions.
+	 * Joins the two threads before moving on to ensure that this.ladder is set before the main thread returns it
 	 * @param start first user input word, the start of the ladder
 	 * @param end second user input word, the end of the ladder
 	 */
@@ -36,6 +42,14 @@ public class DepthFirstSearch {
 		}
 	}
 	
+	/**
+	 * searches the forward ladder (start -> end)
+	 * If the ladder is found before the reverse process:
+	 * 		1. This will print this ladder and terminate the reverse process by setting ladderFound = true
+	 * 		2. This will set this.ladder to be the ladder that this method finds
+	 * Otherwise:
+	 * 		If the ladder is not found before reverse this process will stop and print nothing.
+	 */
 	public void forwardDFS() {
 		Ladder ladder = new Ladder();
 		ArrayList<Integer> searched = new ArrayList<Integer>();	
@@ -58,6 +72,14 @@ public class DepthFirstSearch {
 		}
 	}
 	
+	/**
+	 * searches the reverse ladder (end -> start)
+	 * If the ladder is found before the forward process:
+	 * 		1. This will print this ladder and terminate the forward process by setting ladderFound = true
+	 * 		2. This will set this.ladder to be the ladder that this method finds
+	 * Otherwise:
+	 * 		If the ladder is not found before forward this process will stop and print nothing.
+	 */
 	public void reverseDFS() {
 		Ladder ladderReverse = new Ladder();
 		ArrayList<Integer> searchedReverse = new ArrayList<Integer>();	
@@ -79,10 +101,18 @@ public class DepthFirstSearch {
 		} catch (StackOverflowError e) { //if both too large, fail
 			ladderReverse.noLadder(start, end);
 			this.ladder = new Ladder();
-		}
-		
+		}		
 	}
 	
+	/**
+	 * Searches the current node for the end word. If found returns the current/end word's index. Otherwise it creates lists of all words
+	 * closer to, equidistant to, and further from the goal word which are connected to this word to be searched in that order.
+	 * @param currentWordIndex index of the current word in the dictionary as defined in Words.makeDictionary()
+	 * @param goalIndex
+	 * @param searched all words which have already been searched and are not the correct word
+	 * @param ladder current ladder searching (forward/reverse)
+	 * @return -1 if the currentWord has already been searched or if the ladder was found by the other thread. Otherwise returns the result of searchList
+	 */
 	private Integer search(int currentWordIndex, int goalIndex, ArrayList<Integer> searched, Ladder ladder) {
 		if(searched.contains(currentWordIndex) || ladderFound) {
 			return -1;
@@ -117,10 +147,24 @@ public class DepthFirstSearch {
 		return searchList(greaterThan, equalTo, lessThan, goalIndex, searched, ladder);
 	}
 	
+	/**
+	 * Returns the resulting ladder of DFS. The ladder is whichever thread completed first (forward or reverse).
+	 * @return the DFS ladder
+	 */
 	public ArrayList<String> getLadder() {
 		return this.ladder.getLadder();
 	}
 	
+	/**
+	 * Searches the given lists (which are all nodes connected to the calling node) prioritizing nodes closer to the desired word, then nodes equal in distance to the desired word, then nodes further from the desired word
+	 * @param gList more letters in common with the final word than the current node
+	 * @param eList equal number of letters in common with the final word 
+	 * @param lList fewer number of letters in common with final word
+	 * @param goalIndex final word's index
+	 * @param searched all previously searched nodes. searchList will skip checking these.
+	 * @param ladder the current ladder being build (forward/reverse)
+	 * @return -1 if this is a dead end or if all connecting nodes are equivalently dead ends, the next node's index otherwise
+	 */
 	private Integer searchList(ArrayList<Integer> gList, ArrayList<Integer> eList, ArrayList<Integer> lList, Integer goalIndex, ArrayList<Integer> searched, Ladder ladder) {
 		for(Integer i : gList) {
 			int a = search(i, goalIndex, searched, ladder);

@@ -21,11 +21,16 @@ REQUIREMENTS:
 	- getWordLadderBFS
 	- printLadder
 
-JUnit Tests
+JUnit Tests (good if each case is run separate)
 -BFS vs. BFS is same length
 -BFS vs. DFS BFS<DFS length
 -BFS vs. DFS both find a ladder a.k.a. both should be zero or both should not be zero
 -File Input TestCase Tests
 -Keyboard Input Test
+^If you run all of these at the same time we get a "java.lang.OutOfMemoryError: Java heap space". I.e. we use a lot of memory
 
+
+CLEANUP:
+We need to read through piazza and the document again and make sure that all of our methods and interface are acting exactly
+as they say to. We don't want to lose stupid points b/c we failed to see some random detail.
 

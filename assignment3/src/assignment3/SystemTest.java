@@ -16,11 +16,21 @@ import org.junit.Test;
 
 
 public class SystemTest {
+	/**
+	 * Initialize static variables necessary to run BFS or DFS
+	 * @throws Exception
+	 */
 	@BeforeClass
 	public static void setUp() throws Exception {
 		Main.initialize();
 	}
 	
+	/**
+	 * Compares running time and ladder size for BFS forward and reverse.
+	 * Running time should be similar and all lengths should be identical
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	@Test
 	public void testBFSvsBFS() throws InterruptedException, ExecutionException {
 		Long start;
@@ -74,6 +84,11 @@ public class SystemTest {
 		
 	}
 	
+	/**
+	 * BFS should always return a smaller ladder than DFS
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	@Test
 	public void testDFSvsBFS() throws InterruptedException, ExecutionException {
 		Long start;
@@ -128,7 +143,12 @@ public class SystemTest {
 		}		
 		System.out.println("\n\nAvg BFS Time: " + bfsTime/numItems + "\nAvg DFS Time: " + dfsTime/numItems);		
 	}
-	//Test for if they are both zero or both not zero
+
+	/**
+	 * If either BFS or DFS finds a ladder, then so must the other
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	@Test
 	public void testDFSvsBFS2() throws InterruptedException, ExecutionException{
 		Long start;
@@ -184,12 +204,20 @@ public class SystemTest {
 		System.out.println("\n\nAvg BFS Time: " + bfsTime/numItems + "\nAvg DFS Time: " + dfsTime/numItems);		
 	}
 	
+	/**
+	 * Verify that we can use keyboard inputs for words
+	 * @throws Exception
+	 */
 	@Test
 	public void testKeyboardInput() throws Exception {
 		String[] args = new String[0];
 		Main.main(args);
 	}
 	
+	/**
+	 * Verify that we can input and output to a file
+	 * @throws Exception
+	 */
 	//@Test
 	public void testFileInput() throws Exception {
 		String inFile = "fileInput.txt";
@@ -205,11 +233,20 @@ public class SystemTest {
 		assertTrue(Arrays.equals(outKey, out));		
 	}	
 	
+	/**
+	 * Tests the difference in output between no ladder and a zero rung ladder
+	 * @throws Exception
+	 */
 	@Test
 	public void testZeroRungLadder() throws Exception {
 		ArrayList<String> bfs = Main.getWordLadderBFS("gazer", "gager");
 		ArrayList<String> dfs = Main.getWordLadderDFS("gazer", "gager");
+		ArrayList<String> bfs0 = Main.getWordLadderBFS("welts", "cerci");
+		ArrayList<String> dfs0 = Main.getWordLadderDFS("welts", "cerci");
+		
 		Main.printLadder(dfs);
 		Main.printLadder(bfs);
+		Main.printLadder(dfs0);
+		Main.printLadder(bfs0);
 	}
 }

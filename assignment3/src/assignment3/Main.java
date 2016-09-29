@@ -33,7 +33,7 @@ public class Main {
 	public static String startWord = "";
 	public static String endWord = "";
 	public static ArrayList<String> ladder;
-	public static boolean ladderExists = false;
+	public static boolean initialized = false;
 	
 	public static void main(String[] args) throws Exception {		
 		//initialize();		
@@ -59,8 +59,9 @@ public class Main {
 			kb = new Scanner(System.in);// default from Stdin
 			ps = System.out;			// default to Stdout
 		}  
-		
-		initialize();
+		if(!initialized) {
+			initialize();
+		}
 		
 		ArrayList<String> inputs;
 		while(true) {
@@ -77,6 +78,7 @@ public class Main {
 	}
 	
 	public static void initialize() {
+		initialized = true;
 		Words.setFile("five_letter_words.txt");
 		Words.init();
 	}
@@ -109,7 +111,7 @@ public class Main {
 		startWord = start;
 		endWord = end;
 		DepthFirstSearch dfs = new DepthFirstSearch(start, end);
-		ladderExists = dfs.startDFS();
+		dfs.startDFS();
 		return dfs.getLadder(start, end);
 	}
 	
@@ -117,7 +119,7 @@ public class Main {
 		startWord = start;
 		endWord = end;
 		BreadthFirstSearch bfs = new BreadthFirstSearch();
-		ladderExists = bfs.startBFS(start, end);
+		bfs.startBFS(start, end);
 		return bfs.getLadder(start, end);
 	}    
     
@@ -140,7 +142,12 @@ public class Main {
 	
 	public static void printLadder(ArrayList<String> ladder) {
 		Ladder ladderToPrint = new Ladder(ladder);
-		ladderToPrint.printLadder(startWord, endWord, ladderExists);
+		if(ladder.size() > 1) {
+			ladderToPrint.printLadder(endWord);
+		}
+		else {
+			ladderToPrint.noLadder(startWord, endWord);
+		}
 	}
     
     public static boolean containsDuplicates(ArrayList<String> ladder) {

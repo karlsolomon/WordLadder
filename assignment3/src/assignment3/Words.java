@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Words {
+public final class Words {
 	public static ArrayList<Integer> searched = new ArrayList<Integer>();
 	public static ArrayList<String> dictionary = new ArrayList<String>();
 	public static ArrayList<ArrayList<Integer>> linkedList = new ArrayList<ArrayList<Integer>>();

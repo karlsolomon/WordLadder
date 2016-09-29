@@ -48,19 +48,18 @@ public class Ladder {
 		}		
 	}
 	
-	public void printLadder(String start, String end) {
-		int size = ladder.size();
-		if(ladder.size() == 0) {
+	public void printLadder(String start, String end, boolean exists) {
+		if(!exists) {
 			noLadder(start, end);
+			return;
 		}
 		else {
-			String allRungs = "a " + size + "-rung word ladder exists between " + start + " and " + end + ".\n";
-			System.out.println(start);
+			int size = ladder.size();
+			String allRungs = "a " + size + "-rung word ladder exists between " + start + " and " + end + ".\n" + start +"\n";
 			for(String i : ladder) {
 				allRungs += (i+"\n");
 			}
-			System.out.println(allRungs);
-			System.out.println(end);
+			System.out.println(allRungs + end + "\n");
 		}
 	}	
 	

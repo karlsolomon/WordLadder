@@ -29,7 +29,7 @@ public class SystemTest {
 		ArrayList<String> tmp;		
 		
 		//RANDOM TESTING
-		int numItems = 10;
+		int numItems = 1000;
 		String[][] sizes = new String[numItems][6];
 		Random r = new Random();
 		int bfs1Size = 0;
@@ -83,7 +83,7 @@ public class SystemTest {
 		
 		
 		//RANDOM TESTING
-		int numItems = 10;
+		int numItems = 1000;
 		String[][] sizes = new String[numItems][6];
 		Random r = new Random();
 		int bfsSize = 0;
@@ -101,6 +101,7 @@ public class SystemTest {
 			start = System.nanoTime();
 			tmp = Main.getWordLadderDFS(word1, word2);
 			end = System.nanoTime();
+			Main.printLadder(tmp);
 			time = Long.toString(end-start);
 			dfsSize = tmp.size();
 			sizes[i][2] = String.valueOf(dfsSize);
@@ -110,8 +111,9 @@ public class SystemTest {
 			start = System.nanoTime();
 			tmp = Main.getWordLadderBFS(word1, word2);
 			end = System.nanoTime();
+			Main.printLadder(tmp);
 			time = Long.toString(end-start);		
-			bfsSize = tmp.size();	
+			bfsSize = tmp.size();
 			sizes[i][3] = String.valueOf(bfsSize);
 			sizes[i][5] = time;
 			bfsTime += (end-start);			
@@ -136,7 +138,7 @@ public class SystemTest {
 		
 		
 		//RANDOM TESTING
-		int numItems = 10;
+		int numItems = 1000;
 		String[][] sizes = new String[numItems][6];
 		Random r = new Random();
 		int bfsSize = 0;
@@ -202,4 +204,12 @@ public class SystemTest {
 		byte[] outKey = Files.readAllBytes(outputKey.toPath());
 		assertTrue(Arrays.equals(outKey, out));		
 	}	
+	
+	@Test
+	public void testZeroRungLadder() throws Exception {
+		ArrayList<String> bfs = Main.getWordLadderBFS("gazer", "gager");
+		ArrayList<String> dfs = Main.getWordLadderDFS("gazer", "gager");
+		Main.printLadder(dfs);
+		Main.printLadder(bfs);
+	}
 }

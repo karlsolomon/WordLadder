@@ -27,7 +27,9 @@ public class BreadthFirstSearch {
 	private ArrayList<Integer> results;
 	private boolean ladderFound = false;
 
-	
+	/**
+	 * Constructor
+	 */
 	public BreadthFirstSearch(){
 		ladder = new Ladder();	
 		searched = new Searched();
@@ -36,12 +38,23 @@ public class BreadthFirstSearch {
 		queue = new LinkedList<Integer>();// use .add() and .remove()
 		results = new ArrayList<Integer>();
 	}
-	
+	/**
+	 * Getting the index of the words and passing to search
+	 * @param start is starting word
+	 * @param end is ending word
+	 * @return if a ladder was found
+	 */
 	public boolean startBFS(String start, String end){
 		search(Words.dictionary.indexOf(start), Words.dictionary.indexOf(end));
 		return ladderFound;
 	}
-	
+	/**
+	 * Based on a FIFO queue algorithm for searching,
+	 * starts at a word, then goes to each of the words that are only 1 letter different and checks those
+	 * and if none of those are the end word, then search will add those words' next words to the queue to be checked.
+	 * @param startIndex is index of start word
+	 * @param goalIndex is index of end word
+	 */
 	private void search(int startIndex, int goalIndex){
 		if(startIndex == goalIndex){
 			ladder.add(startIndex);
@@ -93,7 +106,12 @@ public class BreadthFirstSearch {
 		ladder.add(goalIndex);
 		return;
 	}
-	
+	/**
+	 * Getting the ladder for the specific call of bfs
+	 * @param start is starting word
+	 * @param end is ending word
+	 * @return the ladder
+	 */
 	public ArrayList<String> getLadder(String start, String end) {
 		if(this.ladder.getLadder().size() != 0) {
 			ArrayList<String> noEnds = this.ladder.getLadder();

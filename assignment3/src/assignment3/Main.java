@@ -34,7 +34,13 @@ public class Main {
 	public static String endWord = "";
 	public static ArrayList<String> ladder;
 	public static boolean ladderExists = false;
+	private static boolean initialized = false;
 	
+	/**
+	 * For general running cases
+	 * @param args inputs
+	 * @throws Exception for if a file not found
+	 */
 	public static void main(String[] args) throws Exception {		
 		//initialize();		
 		
@@ -59,8 +65,8 @@ public class Main {
 			kb = new Scanner(System.in);// default from Stdin
 			ps = System.out;			// default to Stdout
 		}  
-		
-		initialize();
+		if(!initialized)
+			initialize();
 		
 		ArrayList<String> inputs;
 		while(true) {
@@ -75,14 +81,17 @@ public class Main {
 			}
 		}
 	}
-	
+	/**
+	 * Initializing the file for test cases and making the dictionary
+	 */
 	public static void initialize() {
+		initialized = true;
 		Words.setFile("five_letter_words.txt");
 		Words.init();
 	}
 	
 	/**
-	 * @param keyboard Scanner connected to System.in
+	 * @param keyboard Scanner connected to System.in or a File input
 	 * @return ArrayList of 2 Strings containing start word and end word. 
 	 * If command is /quit, return empty ArrayList. 
 	 */
@@ -104,7 +113,14 @@ public class Main {
 		endWord = inputWords.get(1);
 		return inputWords;
 	}
-	
+	/**
+	 * Passing words to DFS class to build the ladder
+	 * @param start is the starting word
+	 * @param end is the ending word
+	 * @return the wordladder for the 2 words
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	public static ArrayList<String> getWordLadderDFS(String start, String end) throws InterruptedException, ExecutionException {
 		startWord = start;
 		endWord = end;
@@ -112,7 +128,12 @@ public class Main {
 		ladderExists = dfs.startDFS();
 		return dfs.getLadder(start, end);
 	}
-	
+	/**
+	 * Passing words to BFS to build the ladder
+	 * @param start is starting word
+	 * @param end is ending word
+	 * @return the wordladder for the 2 words
+	 */
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
 		startWord = start;
 		endWord = end;
@@ -121,7 +142,10 @@ public class Main {
 		return bfs.getLadder(start, end);
 	}    
     
-    
+    /**
+     * Taking apart the input file and making it into a set of strings
+     * @return set of words from dictionary
+     */
     public static Set<String>  makeDictionary () {
 		Set<String> words = new HashSet<String>();
 		Scanner infile = null;
@@ -137,12 +161,19 @@ public class Main {
 		}
 		return words;
 	}
-	
+	/**
+	 * To print the ladder that is given
+	 * @param ladder passing the list of words to be printed
+	 */
 	public static void printLadder(ArrayList<String> ladder) {
 		Ladder ladderToPrint = new Ladder(ladder);
 		ladderToPrint.printLadder(startWord, endWord, ladderExists);
 	}
-    
+    /**
+     * checks for duplicate words in the list of words
+     * @param ladder is the list of words
+     * @return true if there is a duplicate, else false
+     */
     public static boolean containsDuplicates(ArrayList<String> ladder) {
     	for(int i = 0; i < ladder.size(); i ++) {
     		for(int j = 0; j < ladder.size(); j++) {

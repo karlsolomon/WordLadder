@@ -13,6 +13,14 @@
  * Fall 2016
  */
 
+This program is used for searching for a WordLadder between 2 words where each rung in the ladder is only one letter different from the previous, and as you go down the ladder, you are getting closer to the end word.
+In this, we have BFS and DFS.
+BFS is generally accepted as the fastest method to do this, while DFS can be faster, but only if you are lucky.
+You may run either of these functions and get a returned WordLadder. So...
+
+Enjoy!
+
+
 TODO:
 0. Create some Try/Catch for DFS to avoid StackOverflow
 1. Create JUnit Test cases for BFS & DFS

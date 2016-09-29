@@ -1,3 +1,16 @@
+/* WORD LADDER Main.java
+ * EE422C Project 3 submission by
+ * Replace <...> with your actual data.
+ * Christopher Sickler
+ * cbs2468
+ * 16445
+ * Karl Solomon
+ * kws653
+ * 16445
+ * Slip days used: <0>
+ * Git URL: https://github.com/karlsolomon/WordLadder 
+ * Fall 2016
+ */
 package assignment3;
 
 import java.util.ArrayList;
@@ -13,7 +26,9 @@ public class BreadthFirstSearch {
 	private int[] previousIndex;
 	private ArrayList<Integer> results;
 
-	
+	/**
+	 * Constructor
+	 */
 	public BreadthFirstSearch(){
 		ladder = new Ladder();	
 		searched = new Searched();
@@ -22,11 +37,27 @@ public class BreadthFirstSearch {
 		queue = new LinkedList<Integer>();// use .add() and .remove()
 		results = new ArrayList<Integer>();
 	}
+<<<<<<< HEAD
 	
 	public void startBFS(String start, String end){
+=======
+	/**
+	 * Getting the index of the words and passing to search
+	 * @param start is starting word
+	 * @param end is ending word
+	 * @return if a ladder was found
+	 */
+	public boolean startBFS(String start, String end){
+>>>>>>> origin/master
 		search(Words.dictionary.indexOf(start), Words.dictionary.indexOf(end));
 	}
-	
+	/**
+	 * Based on a FIFO queue algorithm for searching,
+	 * starts at a word, then goes to each of the words that are only 1 letter different and checks those
+	 * and if none of those are the end word, then search will add those words' next words to the queue to be checked.
+	 * @param startIndex is index of start word
+	 * @param goalIndex is index of end word
+	 */
 	private void search(int startIndex, int goalIndex){
 		if(startIndex == goalIndex){
 			ladder.add(startIndex);
@@ -78,7 +109,12 @@ public class BreadthFirstSearch {
 		ladder.add(goalIndex);
 		return;
 	}
-	
+	/**
+	 * Getting the ladder for the specific call of bfs
+	 * @param start is starting word
+	 * @param end is ending word
+	 * @return the ladder
+	 */
 	public ArrayList<String> getLadder(String start, String end) {
 		return this.ladder.getLadder();
 	}

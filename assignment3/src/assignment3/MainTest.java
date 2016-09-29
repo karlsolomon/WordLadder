@@ -1,3 +1,17 @@
+/* WORD LADDER Main.java
+ * EE422C Project 3 submission by
+ * Replace <...> with your actual data.
+ * Christopher Sickler
+ * cbs2468
+ * 16445
+ * Karl Solomon
+ * kws653
+ * 16445
+ * Slip days used: <0>
+ * Git URL: https://github.com/karlsolomon/WordLadder 
+ * Fall 2016
+ */
+
 package assignment3;
 
 import static org.junit.Assert.*;
@@ -11,14 +25,24 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class MainTest {
+<<<<<<< HEAD
 
 	@BeforeClass
 	public static void setUp() throws Exception {
+=======
+	/**
+	 * Initializing the tests so there isnt a heap overflow
+	 * */
+	@Before
+	public void setUp() throws Exception {
+>>>>>>> origin/master
 		Main.initialize();
 	}
 
 
-
+	/**
+	 * Testing Parse to verify it returns the right output for file and keyboard inputs
+	 * */
 	@Test
 	public void testParse() {
 		Scanner s1 = new Scanner(System.in);
@@ -40,6 +64,12 @@ public class MainTest {
 		
 	}
 //windy-rindy-rinds-rings-rinks-ricks-rices-riles
+	/**
+	 * Testing for a known case(above in a comment,
+	 * to see if the ladder is what is supposed to be output.
+	 * @throws InterruptedException if one thread is unexpectedly terminated
+	 * @throws ExecutionException to allow the method to run
+	 */
 	@Test
 	public void testGetWordLadderDFS() throws InterruptedException, ExecutionException {
 		String start = "windy";
@@ -61,6 +91,10 @@ public class MainTest {
 		}
 	}
 	//windy-winds-wilds-wiles-riles
+	/**
+	 * Testing for a known case(above in a comment,
+	 * to see if the ladder is what is supposed to be output.
+	 * */
 	@Test
 	public void testGetWordLadderBFS() {
 		String start = "windy";
@@ -79,7 +113,9 @@ public class MainTest {
 		}
 	}
 	/**
-	 * 
+	 * Testing via visuals to see that printLadder returns the correct output.
+	 * @throws InterruptedException if one thread is unexpectedly terminated
+	 * @throws ExecutionException to allow the method to run
 	 * */
 	@Test
 	public void testPrintLadder() throws InterruptedException, ExecutionException{

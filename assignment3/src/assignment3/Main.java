@@ -33,6 +33,7 @@ public class Main {
 	public static String startWord = "";
 	public static String endWord = "";
 	public static ArrayList<String> ladder;
+	public static boolean ladderExists = false;
 	
 	public static void main(String[] args) throws Exception {		
 		//initialize();		
@@ -58,6 +59,9 @@ public class Main {
 			kb = new Scanner(System.in);// default from Stdin
 			ps = System.out;			// default to Stdout
 		}  
+		
+		initialize();
+		
 		ArrayList<String> inputs;
 		while(true) {
 			try {
@@ -87,13 +91,13 @@ public class Main {
 		String input;
 		input = keyboard.next().toLowerCase();
 		if(input.equalsIgnoreCase("/quit"))
-			return null;
+			System.exit(0);
 		else
 			inputWords.add(input);	
 		
 		input = keyboard.next().toLowerCase();
-		if(input.equalsIgnoreCase("//quit"))
-			return null;
+		if(input.equalsIgnoreCase("/quit"))
+			System.exit(0);
 		else
 			inputWords.add(input);
 		startWord = inputWords.get(0);
@@ -105,7 +109,7 @@ public class Main {
 		startWord = start;
 		endWord = end;
 		DepthFirstSearch dfs = new DepthFirstSearch(start, end);
-		dfs.startDFS();
+		ladderExists = dfs.startDFS();
 		return dfs.getLadder(start, end);
 	}
 	
@@ -113,7 +117,7 @@ public class Main {
 		startWord = start;
 		endWord = end;
 		BreadthFirstSearch bfs = new BreadthFirstSearch();
-		bfs.startBFS(start, end);
+		ladderExists = bfs.startBFS(start, end);
 		return bfs.getLadder(start, end);
 	}    
     
@@ -136,7 +140,7 @@ public class Main {
 	
 	public static void printLadder(ArrayList<String> ladder) {
 		Ladder ladderToPrint = new Ladder(ladder);
-		ladderToPrint.printLadder(startWord, endWord);
+		ladderToPrint.printLadder(startWord, endWord, ladderExists);
 	}
     
     public static boolean containsDuplicates(ArrayList<String> ladder) {

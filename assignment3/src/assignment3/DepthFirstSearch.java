@@ -25,7 +25,7 @@ public class DepthFirstSearch {
 	 * @param start first user input word, the start of the ladder
 	 * @param end second user input word, the end of the ladder
 	 */
-	public void startDFS() {
+	public boolean startDFS() {
 		Thread forward = new Thread(new RunDFS(true, this));
 		forward.start();
 		Thread reverse = new Thread(new RunDFS(false, this));
@@ -40,6 +40,7 @@ public class DepthFirstSearch {
 		      break;
 		   }
 		}
+		return ladderFound;
 	}
 	
 	/**
@@ -150,10 +151,13 @@ public class DepthFirstSearch {
 	 * @return the DFS ladder
 	 */
 	public ArrayList<String> getLadder(String start, String end) {
-		ArrayList<String> noEnds = this.ladder.getLadder();
-		noEnds.remove(noEnds.indexOf(start));
-		noEnds.remove(noEnds.indexOf(end));
-		return noEnds;
+		if(this.ladder.getLadder().size() != 0) {
+			ArrayList<String> noEnds = this.ladder.getLadder();
+			noEnds.remove(noEnds.indexOf(start));
+			noEnds.remove(noEnds.indexOf(end));
+			return noEnds;
+		}
+		else return this.ladder.getLadder();
 	}
 	
 	/**

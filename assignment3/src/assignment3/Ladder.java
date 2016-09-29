@@ -22,14 +22,7 @@ public class Ladder {
 	
 	public ArrayList<String> getLadder() {
 		return this.ladder;
-	}
-	
-	public ArrayList<String> getLadderWithoutStartEnd(String start, String end) {
-		ArrayList<String> noEnds = this.ladder;
-		noEnds.remove(noEnds.indexOf(end));
-		noEnds.remove(noEnds.indexOf(start));
-		return noEnds;
-	}
+	}	
 	
 	public void setLadder(ArrayList<String> ladder) {
 		this.ladder = ladder;
@@ -48,18 +41,18 @@ public class Ladder {
 		}		
 	}
 	
-	public void printLadder(String start, String end, boolean exists) {
-		if(!exists) {
+	public void printLadder(String end) {
+		int size = ladder.size();
+		String start = ladder.get(0);
+		if(!ladder.get(ladder.size()-1).equals(end)) {
 			noLadder(start, end);
-			return;
 		}
 		else {
-			int size = ladder.size();
-			String allRungs = "a " + size + "-rung word ladder exists between " + start + " and " + end + ".\n" + start +"\n";
+			String allRungs = "a " + (size-2) + "-rung word ladder exists between " + start + " and " + end + ".\n" ;
 			for(String i : ladder) {
 				allRungs += (i+"\n");
 			}
-			System.out.println(allRungs + end + "\n");
+			System.out.println(allRungs);
 		}
 	}	
 	

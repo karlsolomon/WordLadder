@@ -7,12 +7,13 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class MainTest {
 
-	@Before
-	public void setUp() throws Exception {
+	@BeforeClass
+	public static void setUp() throws Exception {
 		Main.initialize();
 	}
 

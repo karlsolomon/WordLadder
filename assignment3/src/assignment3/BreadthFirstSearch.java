@@ -12,7 +12,6 @@ public class BreadthFirstSearch {
 	private Searched searched;
 	private int[] previousIndex;
 	private ArrayList<Integer> results;
-	private boolean ladderFound = false;
 
 	
 	public BreadthFirstSearch(){
@@ -24,9 +23,8 @@ public class BreadthFirstSearch {
 		results = new ArrayList<Integer>();
 	}
 	
-	public boolean startBFS(String start, String end){
+	public void startBFS(String start, String end){
 		search(Words.dictionary.indexOf(start), Words.dictionary.indexOf(end));
-		return ladderFound;
 	}
 	
 	private void search(int startIndex, int goalIndex){
@@ -82,12 +80,6 @@ public class BreadthFirstSearch {
 	}
 	
 	public ArrayList<String> getLadder(String start, String end) {
-		if(this.ladder.getLadder().size() != 0) {
-			ArrayList<String> noEnds = this.ladder.getLadder();
-			noEnds.remove(noEnds.indexOf(start));
-			noEnds.remove(noEnds.indexOf(end));
-			return noEnds;
-		}
-		else return this.ladder.getLadder();
+		return this.ladder.getLadder();
 	}
 }

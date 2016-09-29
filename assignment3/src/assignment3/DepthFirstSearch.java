@@ -24,8 +24,9 @@ public class DepthFirstSearch {
 	 * Joins the two threads before moving on to ensure that this.ladder is set before the main thread returns it
 	 * @param start first user input word, the start of the ladder
 	 * @param end second user input word, the end of the ladder
+	 * @return true if a valid ladder is found, false otherwise
 	 */
-	public boolean startDFS() {
+	public void startDFS() {
 		Thread forward = new Thread(new RunDFS(true, this));
 		forward.start();
 		Thread reverse = new Thread(new RunDFS(false, this));
@@ -40,7 +41,6 @@ public class DepthFirstSearch {
 		      break;
 		   }
 		}
-		return ladderFound;
 	}
 	
 	/**
@@ -151,13 +151,7 @@ public class DepthFirstSearch {
 	 * @return the DFS ladder
 	 */
 	public ArrayList<String> getLadder(String start, String end) {
-		if(this.ladder.getLadder().size() != 0) {
-			ArrayList<String> noEnds = this.ladder.getLadder();
-			noEnds.remove(noEnds.indexOf(start));
-			noEnds.remove(noEnds.indexOf(end));
-			return noEnds;
-		}
-		else return this.ladder.getLadder();
+		return this.ladder.getLadder();
 	}
 	
 	/**

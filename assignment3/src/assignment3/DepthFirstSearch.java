@@ -58,7 +58,6 @@ public class DepthFirstSearch {
 			if(!ladderFound) {
 				ladderFound = true;
 				if(ladder.getLadder().contains(start) && ladder.getLadder().contains(end)) {
-					ladder.printLadder(end);
 					this.ladder = ladder;
 				}
 				else {
@@ -91,7 +90,6 @@ public class DepthFirstSearch {
 				if(reverseLadder.contains(start)) {
 					ladderReverse.reverseLadder();
 					this.ladder = ladderReverse;
-					ladder.printLadder(end);
 				}
 				else {
 					ladderReverse.noLadder(start, end);
@@ -151,8 +149,11 @@ public class DepthFirstSearch {
 	 * Returns the resulting ladder of DFS. The ladder is whichever thread completed first (forward or reverse).
 	 * @return the DFS ladder
 	 */
-	public ArrayList<String> getLadder() {
-		return this.ladder.getLadder();
+	public ArrayList<String> getLadder(String start, String end) {
+		ArrayList<String> noEnds = this.ladder.getLadder();
+		noEnds.remove(noEnds.indexOf(start));
+		noEnds.remove(noEnds.indexOf(end));
+		return noEnds;
 	}
 	
 	/**

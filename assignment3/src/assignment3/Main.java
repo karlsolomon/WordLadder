@@ -106,7 +106,7 @@ public class Main {
 		endWord = end;
 		DepthFirstSearch dfs = new DepthFirstSearch(start, end);
 		dfs.startDFS();
-		return dfs.getLadder();
+		return dfs.getLadder(start, end);
 	}
 	
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
@@ -114,7 +114,7 @@ public class Main {
 		endWord = end;
 		BreadthFirstSearch bfs = new BreadthFirstSearch();
 		bfs.startBFS(start, end);
-		return bfs.getLadder();
+		return bfs.getLadder(start, end);
 	}    
     
     
@@ -136,7 +136,7 @@ public class Main {
 	
 	public static void printLadder(ArrayList<String> ladder) {
 		Ladder ladderToPrint = new Ladder(ladder);
-		ladderToPrint.printLadder(endWord);
+		ladderToPrint.printLadder(startWord, endWord);
 	}
     
     public static boolean containsDuplicates(ArrayList<String> ladder) {

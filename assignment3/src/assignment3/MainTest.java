@@ -1,3 +1,17 @@
+/* WORD LADDER Main.java
+ * EE422C Project 3 submission by
+ * Replace <...> with your actual data.
+ * Christopher Sickler
+ * cbs2468
+ * 16445
+ * Karl Solomon
+ * kws653
+ * 16445
+ * Slip days used: <0>
+ * Git URL: https://github.com/karlsolomon/WordLadder 
+ * Fall 2016
+ */
+
 package assignment3;
 
 import static org.junit.Assert.*;

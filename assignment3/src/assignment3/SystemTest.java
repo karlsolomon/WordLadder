@@ -3,6 +3,7 @@ package assignment3;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,12 +11,13 @@ import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 
 public class SystemTest {
-	@Before
-	public void setUp() throws Exception {
+	@BeforeClass
+	public static void setUp() throws Exception {
 		Main.initialize();
 	}
 	
@@ -186,11 +188,13 @@ public class SystemTest {
 		Main.main(args);
 	}
 	
-	@Test
+	//@Test
 	public void testFileInput() throws Exception {
 		String inFile = "fileInput.txt";
 		String outFile = "fileOutput.txt";
 		String[] args = {inFile, outFile};
+		PrintWriter writer = new PrintWriter(args[1], "UTF-8");
+		writer.close();
 		Main.main(args);
 		File output = new File("fileOutput.txt");
 		File outputKey = new File("fileOutputKey.txt");

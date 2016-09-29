@@ -20,18 +20,22 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-	
 	// static variables and constants only here.
+	public static String startWord = "";
+	public static String endWord = "";
+	public static ArrayList<String> ladder;
 	
 	public static void main(String[] args) throws Exception {		
-		initialize();		
+		//initialize();		
 		
 		//ACTUAL INPUT TESTING
 		//SPECIFY I/O FILES IN RUN CONFIGURATIONS -> ARGUMENTS
@@ -58,7 +62,9 @@ public class Main {
 		while(true) {
 			try {
 				inputs = parse(kb);
-				getWordLadderDFS(inputs.get(0), inputs.get(1));	
+				startWord = inputs.get(0);
+				endWord = inputs.get(1);
+				ladder = getWordLadderBFS(startWord, endWord);	
 			} catch (ArrayIndexOutOfBoundsException | NoSuchElementException | NullPointerException e) {
 				ps.close();
 				return;
@@ -89,21 +95,49 @@ public class Main {
 		if(input.equalsIgnoreCase("//quit"))
 			return null;
 		else
-			inputWords.add(input);		
+			inputWords.add(input);
+		startWord = inputWords.get(0);
+		endWord = inputWords.get(1);
 		return inputWords;
 	}
 	
 	public static ArrayList<String> getWordLadderDFS(String start, String end) throws InterruptedException, ExecutionException {
+		startWord = start;
+		endWord = end;
 		DepthFirstSearch dfs = new DepthFirstSearch(start, end);
-		dfs.startDFS();		
+		dfs.startDFS();
 		return dfs.getLadder();
 	}
 	
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
+		startWord = start;
+		endWord = end;
 		BreadthFirstSearch bfs = new BreadthFirstSearch();
 		bfs.startBFS(start, end);
 		return bfs.getLadder();
 	}    
+    
+    
+    public static Set<String>  makeDictionary () {
+		Set<String> words = new HashSet<String>();
+		Scanner infile = null;
+		try {
+			infile = new Scanner (new File("five_letter_words.txt"));
+		} catch (FileNotFoundException e) {
+			System.out.println("Dictionary File not Found!");
+			e.printStackTrace();
+			System.exit(1);
+		}
+		while (infile.hasNext()) {
+			words.add(infile.next().toUpperCase());
+		}
+		return words;
+	}
+	
+	public static void printLadder(ArrayList<String> ladder) {
+		Ladder ladderToPrint = new Ladder(ladder);
+		ladderToPrint.printLadder(endWord);
+	}
     
     public static boolean containsDuplicates(ArrayList<String> ladder) {
     	for(int i = 0; i < ladder.size(); i ++) {

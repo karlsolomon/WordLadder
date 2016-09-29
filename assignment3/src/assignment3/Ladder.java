@@ -8,6 +8,10 @@ public class Ladder {
 		ladder = new ArrayList<String>();
 	}
 	
+	public Ladder(ArrayList<String> inLadder) {
+		this.ladder = inLadder;
+	}
+	
 	public void add(int index) {
 		ladder.add(Words.dictionary.get(index));
 	}
@@ -49,7 +53,8 @@ public class Ladder {
 			}
 			System.out.println(allRungs);
 		}
-	}
+	}	
+	
 	public void noLadder(String start, String end) {
 		System.out.println("no word ladder can be found between " + start + " and " + end + ".");
 	}

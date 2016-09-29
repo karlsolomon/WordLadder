@@ -239,10 +239,10 @@ public class SystemTest {
 	 */
 	@Test
 	public void testZeroRungLadder() throws Exception {
-		ArrayList<String> bfs = Main.getWordLadderBFS("gazer", "gager");
-		ArrayList<String> dfs = Main.getWordLadderDFS("gazer", "gager");
-		ArrayList<String> bfs0 = Main.getWordLadderBFS("welts", "cerci");
-		ArrayList<String> dfs0 = Main.getWordLadderDFS("welts", "cerci");
+		ArrayList<String> bfs = Main.getWordLadderBFS("bruit", "qubit");
+		ArrayList<String> dfs = Main.getWordLadderDFS("bruit", "qubit");
+		ArrayList<String> bfs0 = Main.getWordLadderBFS("qubit", "bruit");
+		ArrayList<String> dfs0 = Main.getWordLadderDFS("qubit", "bruit");
 		
 		Main.printLadder(dfs);
 		Main.printLadder(bfs);

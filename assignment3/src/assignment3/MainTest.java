@@ -25,17 +25,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class MainTest {
-<<<<<<< HEAD
-
-	@BeforeClass
-	public static void setUp() throws Exception {
-=======
 	/**
 	 * Initializing the tests so there isnt a heap overflow
 	 * */
-	@Before
-	public void setUp() throws Exception {
->>>>>>> origin/master
+	@BeforeClass
+	public static void setUp() throws Exception {
+
 		Main.initialize();
 	}
 

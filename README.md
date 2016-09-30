@@ -15,38 +15,19 @@
 
 This program is used for searching for a WordLadder between 2 words where each rung in the ladder is only one letter different from the previous, and as you go down the ladder, you are getting closer to the end word.
 In this, we have BFS and DFS.
-BFS is generally accepted as the fastest method to do this, while DFS can be faster, but only if you are lucky.
-You may run either of these functions and get a returned WordLadder. So...
+BFS is usually the fastest method to do this, while DFS can be faster, but only if you are lucky.
+You may run either of these functions and get a returned WordLadder.
+
+To run Breadth First Search:
+javac Main.java
+java Main <inputFile> <outputFile>
+
+If outputFile does not exist we will create a file of the name to output to
+If inputFile does not exist or if you do not specify either inputFile or outputFile we will interact with the console
+
+If you would like to run DFS you may either change the call to BFS in main or you may call getWordLadderDFS separately.
 
 Enjoy!
-
-
-TODO:
-0. PDF and testing plans and such need to be written up
-
-
-REQUIREMENTS:
-2. One Scanner object connected to keyboard within main()
-3. 5 methods in main
-	- initialize
-	- parse
-	- getWordLadderDFS 
-	- getWordLadderBFS
-	- printLadder
-
-JUnit Tests (good if each case is run separate)
-SystemTests
--BFS vs. BFS is same length
--BFS vs. DFS BFS<DFS length
--BFS vs. DFS both find a ladder a.k.a. both should be zero or both should not be zero
--File Input TestCase Tests
--Keyboard Input Test
-^If you run all of these at the same time we get a "java.lang.OutOfMemoryError: Java heap space". I.e. we use a lot of memory
-MainTests
--getWordLadderDFS
--getWordLadderBFS
--Parse
--printLadder
 
 
 

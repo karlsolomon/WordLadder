@@ -23,7 +23,6 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -231,7 +230,7 @@ public class SystemTest {
 	 * Verify that we can input and output to a file
 	 * @throws Exception
 	 */
-	//@Test
+	@Test
 	public void testFileInput() throws Exception {
 		String inFile = "fileInput.txt";
 		String outFile = "fileOutput.txt";
@@ -254,11 +253,11 @@ public class SystemTest {
 	public void testZeroRungLadder() throws Exception {
 		ArrayList<String> bfs = Main.getWordLadderBFS("bruit", "qubit");
 		ArrayList<String> dfs = Main.getWordLadderDFS("bruit", "qubit");
-		ArrayList<String> bfs0 = Main.getWordLadderBFS("qubit", "bruit");
-		ArrayList<String> dfs0 = Main.getWordLadderDFS("qubit", "bruit");
-		
 		Main.printLadder(dfs);
 		Main.printLadder(bfs);
+		
+		ArrayList<String> bfs0 = Main.getWordLadderBFS("qubit", "bruit");
+		ArrayList<String> dfs0 = Main.getWordLadderDFS("qubit", "bruit");
 		Main.printLadder(dfs0);
 		Main.printLadder(bfs0);
 	}

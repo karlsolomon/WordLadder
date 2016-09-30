@@ -37,18 +37,13 @@ public class BreadthFirstSearch {
 		queue = new LinkedList<Integer>();// use .add() and .remove()
 		results = new ArrayList<Integer>();
 	}
-<<<<<<< HEAD
-	
-	public void startBFS(String start, String end){
-=======
 	/**
 	 * Getting the index of the words and passing to search
 	 * @param start is starting word
 	 * @param end is ending word
 	 * @return if a ladder was found
 	 */
-	public boolean startBFS(String start, String end){
->>>>>>> origin/master
+	public void startBFS(String start, String end){
 		search(Words.dictionary.indexOf(start), Words.dictionary.indexOf(end));
 	}
 	/**
@@ -66,7 +61,7 @@ public class BreadthFirstSearch {
 		searched.setSearched(startIndex);//startIndex has been visited
 		ArrayList<Integer> listForQueue = Words.linkedList.get(startIndex);
 		if(listForQueue.size() == 0){
-			ladder.noLadder(Words.dictionary.get(startIndex), Words.dictionary.get(goalIndex));
+			ladder = new Ladder();
 			return;
 		}
 		for(Integer i : listForQueue){
@@ -94,7 +89,7 @@ public class BreadthFirstSearch {
 				currentIndex = queue.remove();
 			}
 			else{
-				ladder.noLadder(Words.dictionary.get(startIndex), Words.dictionary.get(goalIndex));
+				ladder = new Ladder();
 				return;
 			}		
 		}
@@ -115,7 +110,7 @@ public class BreadthFirstSearch {
 	 * @param end is ending word
 	 * @return the ladder
 	 */
-	public ArrayList<String> getLadder(String start, String end) {
+	public ArrayList<String> getLadder() {
 		return this.ladder.getLadder();
 	}
 }

@@ -132,10 +132,10 @@ public final class Words {
 	}
 	
 	/**
-	 * Return the number of 
-	 * @param a
-	 * @param b
-	 * @return
+	 * Return the number of words that the strings at indices a and b of the dictionary have in common 
+	 * @param a first word index
+	 * @param b second word index
+	 * @return number of letters that a and b have in common (location dependent)
 	 */
 	public static int getNumberOfCommonLetters(int a, int b){
 		return matrix[a][b];

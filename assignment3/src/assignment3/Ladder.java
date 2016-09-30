@@ -15,32 +15,58 @@ package assignment3;
 
 import java.util.ArrayList;
 
+/**
+ * Contains all methods/properties for a ladder
+ * Allows addition and instantiation, but no removal.
+ * If a rung is added to the ladder it is assumed that the rung has already been verified and doesn't need to be removed.
+ * @author KSolomon
+ *
+ */
 public class Ladder {
-	public ArrayList<String> ladder;
+	private ArrayList<String> ladder;
+	
+	/**
+	 * Default Constructor
+	 */
 	public Ladder() {
 		ladder = new ArrayList<String>();
 	}
 	
+	/**
+	 * Constructor which already has all rungs
+	 * @param inLadder
+	 */
 	public Ladder(ArrayList<String> inLadder) {
 		this.ladder = inLadder;
 	}
 	
+	/**
+	 * Adds a rung to the ladder where the input is the index of the word as found in Words.dictionary
+	 * @param index
+	 */
 	public void add(int index) {
 		ladder.add(Words.dictionary.get(index));
 	}
 	
-	public void add(String word) {
-		ladder.add(word);
-	}
-	
+	/**
+	 * Returns the contents of the ladder
+	 * @return the ladder array
+	 */
 	public ArrayList<String> getLadder() {
 		return this.ladder;
 	}	
 	
+	/**
+	 * Sets the ladder of an already existing Ladder object to a certain array
+	 * @param ladder
+	 */
 	public void setLadder(ArrayList<String> ladder) {
 		this.ladder = ladder;
 	}
 	
+	/**
+	 * Reverse the directions of the ladder. Useful for DFS Reverse search
+	 */
 	public void reverseLadder() {
 		String first;
 		String second;
@@ -54,13 +80,17 @@ public class Ladder {
 		}		
 	}
 	
+	/**
+	 * Print the ladder with appropriate syntax
+	 * @param end the expected last word of the ladder. Necessary to verify that this is a valid ladder, otherwise prints no ladder
+	 */
 	public void printLadder(String end) {
 		int size = ladder.size();
-		String start = ladder.get(0);
-		if(!ladder.get(ladder.size()-1).equals(end)) {
-			noLadder(start, end);
+		if(size == 0) {
+			noLadder(Main.startWord, end);
 		}
 		else {
+			String start = ladder.get(0);
 			String allRungs = "a " + (size-2) + "-rung word ladder exists between " + start + " and " + end + ".\n" ;
 			for(String i : ladder) {
 				allRungs += (i+"\n");
@@ -69,7 +99,12 @@ public class Ladder {
 		}
 	}	
 	
-	public void noLadder(String start, String end) {
+	/**
+	 * If no ladder could be found between start and end, print the associated text.
+	 * @param start expected starting word
+	 * @param end  expected ending word
+	 */
+	private void noLadder(String start, String end) {
 		System.out.println("no word ladder can be found between " + start + " and " + end + ".");
 	}
 

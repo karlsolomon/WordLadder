@@ -18,15 +18,19 @@ public class RunDFS implements Runnable {
      DepthFirstSearch dfs;
      
      /**
-      * True = forward
-      * False = backward
-      * @param direction
+      * Helper class which enables multithreading using the Runnable implementation.
+      * @param runForward will execute dfs.forwardDFS() (the expected search direction) if true. Will run the reverse direction if false
+      * i.e. if searching start = "java", end = "code" forward will search java->code, but reverse will search code->java 
+      * @param dfs The DepthFirstSearch object to run in
       */
      RunDFS(boolean runForward, DepthFirstSearch dfs) {
          this.forward = runForward;
          this.dfs = dfs;
      }
 
+     /**
+      * main method for this thread
+      */
 	@Override
 	public void run() {
 		if(this.forward) {

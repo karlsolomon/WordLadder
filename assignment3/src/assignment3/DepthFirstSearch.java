@@ -75,12 +75,10 @@ public class DepthFirstSearch {
 					this.ladder = ladder;
 				}
 				else {
-					ladder.noLadder(start, end);
 					this.ladder = new Ladder();
 				}
 			}
 		} catch (StackOverflowError e) { //if both too large, fail
-			ladder.noLadder(start, end);
 			this.ladder = new Ladder();
 		}
 	}
@@ -106,12 +104,10 @@ public class DepthFirstSearch {
 					this.ladder = ladderReverse;
 				}
 				else {
-					ladderReverse.noLadder(start, end);
 					this.ladder = new Ladder();
 				}				
 			}
 		} catch (StackOverflowError e) { //if both too large, fail
-			ladderReverse.noLadder(start, end);
 			this.ladder = new Ladder();
 		}		
 	}

@@ -19,26 +19,18 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
 	// static variables and constants only here.
 	public static String startWord = "";
 	public static String endWord = "";
 	public static ArrayList<String> ladder;
-<<<<<<< HEAD
 	public static boolean initialized = false;
-=======
-	public static boolean ladderExists = false;
-	private static boolean initialized = false;
->>>>>>> origin/master
 	
 	/**
 	 * For general running cases
@@ -69,14 +61,9 @@ public class Main {
 			kb = new Scanner(System.in);// default from Stdin
 			ps = System.out;			// default to Stdout
 		}  
-<<<<<<< HEAD
 		if(!initialized) {
 			initialize();
 		}
-=======
-		if(!initialized)
-			initialize();
->>>>>>> origin/master
 		
 		ArrayList<String> inputs;
 		while(true) {
@@ -84,7 +71,8 @@ public class Main {
 				inputs = parse(kb);
 				startWord = inputs.get(0);
 				endWord = inputs.get(1);
-				ladder = getWordLadderBFS(startWord, endWord);	
+				ladder = getWordLadderBFS(startWord, endWord);
+				printLadder(ladder);
 			} catch (ArrayIndexOutOfBoundsException | NoSuchElementException | NullPointerException e) {
 				ps.close();
 				return;
@@ -149,7 +137,7 @@ public class Main {
 		endWord = end;
 		BreadthFirstSearch bfs = new BreadthFirstSearch();
 		bfs.startBFS(start, end);
-		return bfs.getLadder(start, end);
+		return bfs.getLadder();
 	}    
     
     /**
@@ -177,12 +165,7 @@ public class Main {
 	 */
 	public static void printLadder(ArrayList<String> ladder) {
 		Ladder ladderToPrint = new Ladder(ladder);
-		if(ladder.size() > 1) {
-			ladderToPrint.printLadder(endWord);
-		}
-		else {
-			ladderToPrint.noLadder(startWord, endWord);
-		}
+		ladderToPrint.printLadder(endWord);
 	}
     /**
      * checks for duplicate words in the list of words

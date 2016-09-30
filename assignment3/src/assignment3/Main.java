@@ -37,12 +37,7 @@ public class Main {
 	 * @param args inputs
 	 * @throws Exception for if a file not found
 	 */
-	public static void main(String[] args) throws Exception {		
-		//initialize();		
-		
-		//ACTUAL INPUT TESTING
-		//SPECIFY I/O FILES IN RUN CONFIGURATIONS -> ARGUMENTS
-		//^BLANK MEANS I/O IS CONSOLE
+	public static void main(String[] args) throws Exception {
 		Scanner kb = null;	// input Scanner for commands
 		PrintStream ps = null;	// output file
 		// If arguments are specified, read/write from/to files instead of Std IO.
